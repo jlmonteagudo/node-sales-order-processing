@@ -23,5 +23,4 @@ var CustomerSchema = new Schema({
 	}
 });
 
-
 mongoose.model('Customer', CustomerSchema);
