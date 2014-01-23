@@ -1,0 +1,118 @@
+/* Will be compiled down to a single stylesheet with your sass files */
+
+/*Import Google Fonts*/
+@import url(http://fonts.googleapis.com/css?family=Monda:400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+
+body {
+	padding: 20px;
+	font-family: 'Open Sans';
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+
+/*Servive Blocks*/
+.servive-block .servive-block-in {
+	padding: 20px 30px;
+	text-align: center;
+	margin-bottom: 20px;
+	background: #fafafa;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+.servive-block .servive-block-in:hover {
+	box-shadow: 0 0 8px #ddd;
+}
+
+.servive-block .servive-block-in h4 {
+	line-height: 25px;
+}
+
+.servive-block .servive-block-in h4 a:hover {
+	color: #72c02c;
+	text-decoration: none;
+}
+
+.servive-block .servive-block-in:hover h4,
+.servive-block .servive-block-in:hover i {
+	color: #72c02c;
+}
+
+.servive-block .servive-block-in i {
+	color: #565656;
+	font-size: 40px;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.servive-block .servive-block-red {
+	background: #e74c3c;
+}
+.servive-block .servive-block-sea {
+	background: #1abc9c;
+}
+.servive-block .servive-block-blue {
+	background: #3498db;
+}
+.servive-block .servive-block-grey {
+	background: #95a5a6;
+}
+.servive-block .servive-block-yellow {
+	background: #f1c40f;
+}
+.servive-block .servive-block-orange {
+	background: #e67e22;
+}
+.servive-block .servive-block-green {
+	background: #2ecc71;
+}
+
+.servive-block .servive-block-colored i,
+.servive-block .servive-block-colored p,
+.servive-block .servive-block-colored h4,
+.servive-block .servive-block-colored:hover i,
+.servive-block .servive-block-colored:hover h4 {
+	color: #fff;
+}
+
+.servive-block .servive-block-colored:hover {
+	opacity: 0.8;
+	box-shadow: none;
+}
+
+/*Service Alternative Block*/
+.service-alternative .service:hover { 
+	background: #76ca2c;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+.service-alternative .service:hover i,
+.service-alternative .service:hover p,
+.service-alternative .service:hover h4 { 
+	color: #fff;
+}
+
+/*Servive Block Versions*/
+.service-v1 h2 {
+	margin: 15px 0;
+	font-size: 20px;
+	line-height: 28px;
+}
+
+.service-v1 p {
+	text-align: justify;
+}
+
+.container {
+	margin-top: 30px;
+}
