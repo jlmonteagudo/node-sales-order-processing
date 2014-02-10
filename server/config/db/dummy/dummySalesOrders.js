@@ -20,6 +20,119 @@ var createCustomers = function() {
 				state: 'Castellon',
 				country: 'Spain'
 			},
+
+			{
+				name: 'Diego Simeone',
+				address: 'C/Cabo de Gata, 3',
+				state: 'Valencia',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Thibaut Courtois',
+				address: 'C/Sagunto, 5',
+				state: 'Castellon',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Daniel Aranzubia',
+				address: 'C/Paterna',
+				state: 'Castellon',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Diego Godin',
+				address: 'C/Machichaco, 3',
+				state: 'Bilbao',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Filipe Luis Kasmirski',
+				address: 'C/Historiador Viciano, 13',
+				state: 'Castellon',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Juanfran Torres',
+				address: 'C/Cabo Malaga, 3',
+				state: 'Cadiz',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Miranda Souza',
+				address: 'C/Escultor Viciano, 23',
+				state: 'Castellon',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Tiago Cardoso',
+				address: 'C/Cabo de Machichaco, 3',
+				state: 'Castellon',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Mario Suarez',
+				address: 'C/Cabo de Machichaco, 3',
+				state: 'Castellon',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Koke Resurrecion',
+				address: 'C/Cabo de Machichaco, 3',
+				state: 'Castellon',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Gabi Fernandez',
+				address: 'C/Cabo de Machichaco, 3',
+				state: 'Castellon',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Ada Turan',
+				address: 'C/Cabo de Machichaco, 3',
+				state: 'Castellon',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Oliver Torres',
+				address: 'C/Cabo de Machichaco, 3',
+				state: 'Castellon',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Adrian Lopez',
+				address: 'C/Cabo de Machichaco, 3',
+				state: 'Castellon',
+				country: 'Spain'
+			},
+
+			{
+				name: 'Diego Costa',
+				address: 'C/Cabo de Machichaco, 3',
+				state: 'Castellon',
+				country: 'Spain'
+			},
+
+			{
+				name: 'David Villa',
+				address: 'C/Cabo de Machichaco, 3',
+				state: 'Castellon',
+				country: 'Spain'
+			},
+																								
 			function(err, customer) {
 				if (err) {
 					log.error('Error loading dummy customers: ' + err);

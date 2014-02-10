@@ -1,7 +1,7 @@
 angular.module('sop.customers', [])
 	.controller('CustomersController', ['$scope', '$http', 'Restangular', function($scope, $http, Restangular) {
 
-		var apiCustomers = Restangular.all('users');
+		var apiCustomers = Restangular.all('customers');
 		var params = 
 		{
 			conditions: {
@@ -9,7 +9,7 @@ angular.module('sop.customers', [])
 			},
 
 			likes: {
-				name: 'diego'
+				name: ''
 			},
 
 			options: {
