@@ -34,16 +34,22 @@ exports.findById = function(req, res) {
 
 exports.list = function(req, res) {
 
-	var conditions, fields, options;
+	var conditions, fields, options, likes;
 
 	try {
 
-		conditions = req.query.conditions ? JSON.parse(req.query.conditions) : null;
-		fields = req.query.fields ? JSON.parse(req.query.fields) : null;
+		conditions = req.query.conditions ? JSON.parse(req.query.conditions) : {};
+		fields = req.query.fields ? JSON.parse(req.query.fields) : {};
 		options = req.query.options ? JSON.parse(req.query.options) : {};
+		likes = req.query.likes ? JSON.parse(req.query.likes) : {};
 
 		if (!options.limit) { options.limit = LIMIT_ROWS_DEFAULT; }
 		if (options.limit > LIMIT_ROWS) { options.limit = LIMIT_ROWS; }
+
+		_.forOwn(likes, function(value, key) {
+			conditions[key] = {$regex: value, $options: 'i'};
+		});
+
 
 		User.find(conditions, fields, options, function (err, users) {
 			if (err) { throw new Error(); }

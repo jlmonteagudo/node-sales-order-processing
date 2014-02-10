@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="sop">
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+
+  <!-- App LESS -->
+  <link href="css/app.less" type="text/css" rel="stylesheet/less">
+
+</head>
+<body>
+
+  <!-- Livereload script for development only (stripped during dist build) -->
+  <script src="http://localhost:35729/livereload.js" data-build="exclude"></script>
+
+  <!-- JS from Bower components -->
+  <script src="bower_components/less.js/dist/less-1.5.0.js" data-build="exclude"></script>
+  <script src="bower_components/jquery/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/underscore/underscore.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/restangular/dist/restangular.min.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
+
+
+  <!-- Main App JS -->
+  <script src="js/setup.js"></script>
+
+  <!-- Service JS -->
+  <!-- Add New Service JS Above -->
+
+  <!-- Directive JS -->
+  <!-- Add New Directive JS Above -->
+
+  <!-- Filter JS -->
+  <!-- Add New Filter JS Above -->
+
+  <!-- Partial JS -->
+  <script src="partial/home/home.js"></script>
+  <script src="partial/customers/customers.js"></script>
+  <!-- Add New Partial JS Above -->
+
+  <div>
+    <div id="content" class="container">
+
+
+      <!-- Menu -->
+
+      <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">SOP</a>
+        </div>
+
+        <div class="navbar-collapse collapse navbar-inverse-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/#/customers">Customers</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Sales</a></li>
+            <li><a href="#">Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- End Menu -->
+
+
+
+      <div class="content">
+        <div ng-view>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
