@@ -30,6 +30,20 @@ angular.module('sop').config(function(RestangularProvider) {
 		id: "_id"
 	});
 
+
+	RestangularProvider.setResponseExtractor(function(response, operation, what, url) {
+		var newResponse;
+
+		if (operation === "getList") {
+			newResponse = response.results;
+			newResponse.count = response.count;
+		} else {
+			newResponse = response.data;
+		}
+		
+		return newResponse;
+	});	
+
 });
 
 

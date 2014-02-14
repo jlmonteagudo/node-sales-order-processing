@@ -1,11 +1,79 @@
 <div class="col-md-12" ng-controller="CustomersController">
 
+	 <script type="text/ng-template" id="customers-view.html">
+	        <div class="modal-header">
+	            <h3>Customer</h3>
+	        </div>
+	        <div class="modal-body">
+				{{customer.name}}<br/>
+				{{customer.address}}<br/>
+				{{customer.state}}<br/>
+				{{customer.country}}<br/>	        
+	        </div>
+	        <div class="modal-footer">
+	            <button class="btn btn-primary" ng-click="ok()">OK</button>
+	        </div>
+	    </script>
+
 	<H2>CUSTOMERS</H2>
 
-	<ul>
-		<li ng-repeat = "customer in customers">
-			{{customer.username}} - {{customer.name}}
-		</li>
-	</ul>
+	<div style="height: 350px">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>
+						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By Name" ng-model="filters.name">
+						<br/>
+						Name
+					</th>
+					<th>
+						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By Address" ng-model="filters.address">
+						<br/>
+						Address
+					</th>
+					<th>
+						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By State" ng-model="filters.state">
+						<br/>
+						State
+					</th>
+					<th>
+						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By Country" ng-model="filters.country">
+						<br/>
+						Country
+					</th>
+					<th>
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat = "customer in customers">
+					<td>{{customer.name}}</td>
+					<td>{{customer.address}}</td>
+					<td>{{customer.state}}</td>
+					<td>{{customer.country}}</td>
+					<td>
+						<div style="width: 150px">
+						<button type="button" class="btn btn-default" ng-click="view(customer)">
+							<span class="glyphicon glyphicon-eye-open" title="View"></span>
+						</button>
+						<button type="button" class="btn btn-default" title="Edit">
+							<span class="glyphicon glyphicon-edit"></span>
+						</button>
+						<button type="button" class="btn btn-default" title="Remove">
+							<span class="glyphicon glyphicon-remove-circle"></span>
+						</button>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+
+	<pagination items-per-page="5" total-items="totalItems" page="currentPage" on-select-page="selectPage(page)"></pagination>
+
+	<br/>
+	Count: {{customers.count}}
+
 
 </div>

@@ -40,9 +40,12 @@ exports.findById = function(req, res) {
 	res.json(req.model);
 };
 
+
+
 exports.list = function(req, res) {
 
-	var conditions, fields, options, likes;
+	var conditions, fields, options, filters;
+	var responseData = {};
 
 	try {
 
@@ -51,26 +54,37 @@ exports.list = function(req, res) {
 		conditions = req.query.conditions ? JSON.parse(req.query.conditions) : {};
 		fields = req.query.fields ? JSON.parse(req.query.fields) : {};
 		options = req.query.options ? JSON.parse(req.query.options) : {};
-		likes = req.query.likes ? JSON.parse(req.query.likes) : {};
+		filters = req.query.filters ? JSON.parse(req.query.filters) : {};
 
 		if (!options.limit) { options.limit = LIMIT_ROWS_DEFAULT; }
 		if (options.limit > LIMIT_ROWS) { options.limit = LIMIT_ROWS; }
 
-		_.forOwn(likes, function(value, key) {
+		_.forOwn(filters, function(value, key) {
 			conditions[key] = {$regex: value, $options: 'i'};
 		});
 
-		Model.find(conditions, fields, options, function (err, models) {
-			if (err) { throw new Error(); }
-			res.json(models);
+
+		Model.count(function(err, count) { 
+			if (err) { console.log(err.message) };
+
+			responseData.count = count;
+			Model.find(conditions, fields, options, function (err, models) {
+				if (err) { throw new Error(err.message); }
+				responseData.results = models;
+				res.json(responseData);
+			});
+
 		});
+
 
 	}
 	catch (err) {
+		console.log(err.message);
 		res.json(400, {'code': 'list-error', 'message' : err.message});
 	}
 
 };
+
 
 
 exports.update = function(req, res) {
