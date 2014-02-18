@@ -64,8 +64,8 @@ exports.list = function(req, res) {
 		});
 
 
-		Model.count(function(err, count) { 
-			if (err) { console.log(err.message) };
+		Model.count(conditions, function(err, count) {
+			if (err) { console.log(err.message); }
 
 			responseData.count = count;
 			Model.find(conditions, fields, options, function (err, models) {

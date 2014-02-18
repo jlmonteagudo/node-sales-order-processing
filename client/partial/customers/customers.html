@@ -1,23 +1,8 @@
-<div class="col-md-12" ng-controller="CustomersController">
-
-	 <script type="text/ng-template" id="customers-view.html">
-	        <div class="modal-header">
-	            <h3>Customer</h3>
-	        </div>
-	        <div class="modal-body">
-				{{customer.name}}<br/>
-				{{customer.address}}<br/>
-				{{customer.state}}<br/>
-				{{customer.country}}<br/>	        
-	        </div>
-	        <div class="modal-footer">
-	            <button class="btn btn-primary" ng-click="ok()">OK</button>
-	        </div>
-	    </script>
+<div class="col-md-12" ng-controller="CustomersListController">
 
 	<H2>CUSTOMERS</H2>
 
-	<div style="height: 350px">
+	<div>
 		<table class="table">
 			<thead>
 				<tr>
@@ -53,10 +38,10 @@
 					<td>{{customer.country}}</td>
 					<td>
 						<div style="width: 150px">
-						<button type="button" class="btn btn-default" ng-click="view(customer)">
-							<span class="glyphicon glyphicon-eye-open" title="View"></span>
+						<button type="button" class="btn btn-default" title="View" ng-click="view(customer)">
+							<span class="glyphicon glyphicon-eye-open"></span>
 						</button>
-						<button type="button" class="btn btn-default" title="Edit">
+						<button type="button" class="btn btn-default" title="Edit" ng-click="edit(customer)">
 							<span class="glyphicon glyphicon-edit"></span>
 						</button>
 						<button type="button" class="btn btn-default" title="Remove">
@@ -70,10 +55,11 @@
 		</table>
 	</div>
 
-	<pagination items-per-page="5" total-items="totalItems" page="currentPage" on-select-page="selectPage(page)"></pagination>
+	<pagination items-per-page="itemsPerPage" total-items="customers.count" page="currentPage" on-select-page="selectPage(page)"></pagination>
 
 	<br/>
-	Count: {{customers.count}}
+	# Customers: {{customers.count}}<br/>
+
 
 
 </div>

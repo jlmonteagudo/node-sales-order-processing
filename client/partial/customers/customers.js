@@ -1,85 +1,103 @@
+
 angular.module('sop.customers', [])
 
-	.controller('CustomersController', ['$scope', '$http', 'Restangular', '$modal', function($scope, $http, Restangular, $modal) {
+	.factory('CustomersService', ['Restangular', function(Restangular) {
+		return Restangular.all('customers');
+	}])
 
-		var apiCustomers = Restangular.all('customers');
-		var params = 
-		{
-			conditions: {
-				
-			},
 
-			filters: {
-				name: ''
-			},
+	.controller('CustomersListController', ['$scope', '$http', 'CustomersService', '$modal', function($scope, $http, CustomersService, $modal) {
 
+		$scope.currentPage = 1;
+		$scope.itemsPerPage = 5;
+
+		var params = {
+			filters: {},
 			options: {
-				skip: (($scope.currentPage - 1) * $scope.maxSize),
-				limit: 5
+				skip: (($scope.currentPage - 1) * $scope.itemsPerPage),
+				limit: $scope.itemsPerPage
 			}
 		};
 
-
-
-		$scope.totalItems = 17;
-		$scope.currentPage = 1;
-		$scope.maxSize = 5;
+		$scope.customers = CustomersService.getList(params).$object;
 
 		$scope.selectPage = function (pageNumber) {
 			$scope.currentPage = pageNumber;
-			$scope.customers = apiCustomers.getList(params).$object;
+			params.options.skip = (($scope.currentPage - 1) * $scope.itemsPerPage);
+			CustomersService.getList(params).then(function(customers) {
+				$scope.customers = customers;
+			});
 		};
 
-
 		$scope.$watch('filters.name', function (val) {
-		 	params.filters.name = val;
-			$scope.customers = apiCustomers.getList(params).$object;
-		 });
+			params.filters.name = val;
+			$scope.customers = CustomersService.getList(params).$object;
+		});
 
+		$scope.$watch('filters.address', function (val) {
+			params.filters.address = val;
+			$scope.customers = CustomersService.getList(params).$object;
+		});
 
-		$scope.customers = apiCustomers.getList(params).$object;
+		$scope.$watch('filters.state', function (val) {
+			params.filters.state = val;
+			$scope.customers = CustomersService.getList(params).$object;
+		});
+
+		$scope.$watch('filters.country', function (val) {
+			params.filters.country = val;
+			$scope.customers = CustomersService.getList(params).$object;
+		});
 
 		$scope.view = function(customer) {
 
-
 			var modalInstance = $modal.open({
+				backdrop: 'static',
 				windowClass: "modal fade in",
-				templateUrl: 'customers-view.html',
-				controller: CustomersViewController,
+				templateUrl: 'partial/customers/customers-view.html',
+				controller: 'CustomersViewController',
 				resolve: {
 					customer: function () {
 						return customer;
 					}
 				}
 			});
+		};
 
-			modalInstance.result.then(function (selectedItem) {
-      			$scope.selected = selectedItem;
-    		}, function () {
-      			$log.info('Modal dismissed at: ' + new Date());
-    		});
+		$scope.edit = function(customer) {
 
-		}
+			var modalInstance = $modal.open({
+				backdrop: 'static',
+				windowClass: "modal fade in",
+				templateUrl: 'partial/customers/customers-edit.html',
+				controller: 'CustomersEditController',
+				resolve: {
+					customer: function () {
+						return customer;
+					}
+				}
+			});
+		};
 
 
+	}])
 
-	}]);
 
-	var CustomersViewController = function($scope, $modalInstance, customer) {
+	.controller('CustomersViewController', ['$scope', '$modalInstance', 'customer', function($scope, $modalInstance, customer) {
 
 		$scope.customer = customer;
-
 		$scope.ok = function () {
 			$modalInstance.close(customer);
 		};
 
-	}
+	}])
 
-	/*
-	.controller('CustomersViewController', ['$scope', 'customer', function($scope, customer) {
+
+	.controller('CustomersEditController', ['$scope', '$modalInstance', 'customer', function($scope, $modalInstance, customer) {
 
 		$scope.customer = customer;
+		$scope.ok = function () {
+			$modalInstance.close(customer);
+		};
 
 	}]);
-*/
-	

@@ -34,7 +34,7 @@ exports.findById = function(req, res) {
 
 exports.list = function(req, res) {
 
-	var conditions, fields, options, filters;
+	var conditions, fields, options, filters, responseData;
 
 	try {
 
@@ -42,6 +42,7 @@ exports.list = function(req, res) {
 		fields = req.query.fields ? JSON.parse(req.query.fields) : {};
 		options = req.query.options ? JSON.parse(req.query.options) : {};
 		filters = req.query.filters ? JSON.parse(req.query.filters) : {};
+		responseData = {};
 
 		if (!options.limit) { options.limit = LIMIT_ROWS_DEFAULT; }
 		if (options.limit > LIMIT_ROWS) { options.limit = LIMIT_ROWS; }
@@ -51,7 +52,7 @@ exports.list = function(req, res) {
 		});
 
 
-		User.count(function(err, count) { 
+		User.count(function(err, count) {
 			if (err) { throw err; }
 
 			responseData.count = count;
