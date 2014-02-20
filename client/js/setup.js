@@ -63,6 +63,7 @@ angular.module('sop').run(function($rootScope) {
 });
 
 
+/*
 // store the template cache url inside the template cache
 angular.module('sop').run(['$templateCache', '$http', 'templateTextUrl', function($templateCache, $http, templateTextUrl) {
 		if (templateTextUrl !== undefined && templateTextUrl.length > 0) {
@@ -70,3 +71,4 @@ angular.module('sop').run(['$templateCache', '$http', 'templateTextUrl', functio
 		}
 	}
 ]);
+*/

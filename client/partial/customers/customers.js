@@ -6,10 +6,14 @@ angular.module('sop.customers', [])
 	}])
 
 
-	.controller('CustomersListController', ['$scope', '$http', 'CustomersService', '$modal', function($scope, $http, CustomersService, $modal) {
+	.controller('CustomersListController', ['$scope', '$http', 'CustomersService', '$modal', '$timeout', function($scope, $http, CustomersService, $modal, $timeout) {
 
 		$scope.currentPage = 1;
 		$scope.itemsPerPage = 5;
+		$scope.alerts = [];
+
+
+		var filterTimeout;
 
 		var params = {
 			filters: {},
@@ -19,7 +23,16 @@ angular.module('sop.customers', [])
 			}
 		};
 
+		var getListCustomers = function() {
+			if (filterTimeout) { $timeout.cancel(filterTimeout); }
+			filterTimeout = $timeout(function() {
+				$scope.customers = CustomersService.getList(params).$object;
+			}, 250);
+		}
+
+
 		$scope.customers = CustomersService.getList(params).$object;
+
 
 		$scope.selectPage = function (pageNumber) {
 			$scope.currentPage = pageNumber;
@@ -31,22 +44,22 @@ angular.module('sop.customers', [])
 
 		$scope.$watch('filters.name', function (val) {
 			params.filters.name = val;
-			$scope.customers = CustomersService.getList(params).$object;
+			getListCustomers();
 		});
 
 		$scope.$watch('filters.address', function (val) {
 			params.filters.address = val;
-			$scope.customers = CustomersService.getList(params).$object;
+			getListCustomers();
 		});
 
 		$scope.$watch('filters.state', function (val) {
 			params.filters.state = val;
-			$scope.customers = CustomersService.getList(params).$object;
+			getListCustomers();
 		});
 
 		$scope.$watch('filters.country', function (val) {
 			params.filters.country = val;
-			$scope.customers = CustomersService.getList(params).$object;
+			getListCustomers();
 		});
 
 		$scope.view = function(customer) {
@@ -77,6 +90,59 @@ angular.module('sop.customers', [])
 					}
 				}
 			});
+
+			modalInstance.result.then(function (customer) {
+				$scope.alerts.push({type: 'success', msg: customer.name + ' has been updated!'});
+			});
+
+		};
+
+		$scope.delete = function(customer) {
+
+			var modalInstance = $modal.open({
+				backdrop: 'static',
+				windowClass: "modal fade in",
+				templateUrl: 'partial/customers/customers-delete.html',
+				controller: 'CustomersDeleteController',
+				resolve: {
+					customer: function () {
+						return customer;
+					}
+				}
+			});
+
+			modalInstance.result.then(function () {
+				$scope.alerts.push({type: 'success', msg: customer.name + ' has been deleted!'});
+				$scope.selectPage($scope.currentPage);
+			});
+
+		};
+
+
+		$scope.new = function(customer) {
+
+			var modalInstance = $modal.open({
+				backdrop: 'static',
+				windowClass: "modal fade in",
+				templateUrl: 'partial/customers/customers-edit.html',
+				controller: 'CustomersNewController',
+				resolve: {
+					customers: function () {
+						return $scope.customers;
+					}
+				}
+			});
+
+			modalInstance.result.then(function (customer) {
+				$scope.alerts.push({type: 'success', msg: customer.name + ' has been created!'});
+				$scope.selectPage($scope.currentPage);
+			});
+
+		};
+
+
+		$scope.closeAlert = function(index) {
+			$scope.alerts.splice(index, 1);
 		};
 
 
@@ -86,8 +152,36 @@ angular.module('sop.customers', [])
 	.controller('CustomersViewController', ['$scope', '$modalInstance', 'customer', function($scope, $modalInstance, customer) {
 
 		$scope.customer = customer;
-		$scope.ok = function () {
-			$modalInstance.close(customer);
+		$scope.close = function () {
+			$modalInstance.close();
+		};
+
+	}])
+
+
+
+	.controller('CustomersNewController', ['$scope', '$modalInstance', 'customers', function($scope, $modalInstance, customers) {
+
+		$scope.customer = {};
+		$scope.alerts = [];
+
+		$scope.save = function () {
+
+			customers.post($scope.customer)
+				.then(function() {
+					$modalInstance.close($scope.customer);
+				}, function(e) {
+					$scope.alerts.push({type: 'danger', msg: e.data.message});
+				});
+
+		};
+
+		$scope.cancel = function () {
+			$modalInstance.dismiss();
+		};
+
+		$scope.closeAlert = function(index) {
+			$scope.alerts.splice(index, 1);
 		};
 
 	}])
@@ -95,9 +189,56 @@ angular.module('sop.customers', [])
 
 	.controller('CustomersEditController', ['$scope', '$modalInstance', 'customer', function($scope, $modalInstance, customer) {
 
+		$scope.customer = customer.clone();
+		$scope.alerts = [];
+
+		$scope.save = function () {
+
+			$scope.customer.put()
+				.then(function() {
+					angular.copy($scope.customer, customer);
+					$modalInstance.close($scope.customer);
+				}, function(e) {
+					$scope.alerts.push({type: 'danger', msg: e.data.message});
+				});
+
+		};
+
+		$scope.cancel = function () {
+			$modalInstance.dismiss();
+		};
+
+
+		$scope.closeAlert = function(index) {
+			$scope.alerts.splice(index, 1);
+		};
+
+	}])
+
+
+	.controller('CustomersDeleteController', ['$scope', '$modalInstance', 'customer', function($scope, $modalInstance, customer) {
+
 		$scope.customer = customer;
-		$scope.ok = function () {
-			$modalInstance.close(customer);
+		$scope.alerts = [];
+
+		$scope.delete = function () {
+
+			$scope.customer.remove()
+				.then(function() {
+					$modalInstance.close($scope.customer);
+				}, function(e) {
+					$scope.alerts.push({type: 'danger', msg: e.data.message});
+				});
+
+		};
+
+		$scope.cancel = function () {
+			$modalInstance.dismiss();
+		};
+
+
+		$scope.closeAlert = function(index) {
+			$scope.alerts.splice(index, 1);
 		};
 
 	}]);
