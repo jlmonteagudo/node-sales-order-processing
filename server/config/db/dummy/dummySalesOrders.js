@@ -157,67 +157,67 @@ var createProducts = function() {
 		Product.create(
 			{
 				description: 'Parachoques Delantero Ford Focus',
-				address: 95
+				price: 95
 			},
 			{
 				description: 'Parachoques Trasero Ford Focus',
-				address: 105
+				price: 105
 			},
 			{
 				description: 'Optica Derecha Ford Focus',
-				address: 56
+				price: 56.98
 			},
 			{
 				description: 'Optica Izquierda Ford Focus',
-				address: 56
+				price: 56
 			},
 			{
 				description: 'Parachoques Delantero Citroen C4',
-				address: 95
+				price: 95
 			},
 			{
 				description: 'Parachoques Trasero Citroen C4',
-				address: 105
+				price: 105
 			},
 			{
 				description: 'Optica Derecha Citroen C4',
-				address: 56
+				price: 56
 			},
 			{
 				description: 'Optica Izquierda Citroen C4',
-				address: 56
+				price: 56.99
 			},
 			{
 				description: 'Parachoques Delantero Citroen C3',
-				address: 95
+				price: 95
 			},
 			{
 				description: 'Parachoques Trasero Citroen C3',
-				address: 105
+				price: 105
 			},
 			{
 				description: 'Optica Derecha Citroen C3',
-				address: 56
+				price: 56
 			},
 			{
 				description: 'Optica Izquierda Citroen C3',
-				address: 56
+				price: 56
 			},
 			{
 				description: 'Parachoques Delantero Citroen C2',
-				address: 95
+				price: 95
 			},
 			{
 				description: 'Parachoques Trasero Citroen C2',
-				address: 105
+				price: 105
 			},
 			{
 				description: 'Optica Derecha Citroen C2',
-				address: 56
+				price: 56
 			},
 			{
 				description: 'Optica Izquierda Citroen C2',
-				address: 56
+				price: 56
 			},
 			function(err, product) {
 				if (err) {

@@ -4,7 +4,8 @@ angular.module('sop',
 	'ngRoute',
 	'ngAnimate', 
 	'restangular',
-	'sop.customers'
+	'sop.customers',
+	'sop.products'
 	]);
 
 angular.module('sop').config(function($routeProvider) {
@@ -15,6 +16,9 @@ angular.module('sop').config(function($routeProvider) {
 	}).
 	when('/customers', {
 		templateUrl: 'partial/customers/customers.html'
+	}).
+	when('/products', {
+		templateUrl: 'partial/products/products.html'
 	}).
 	/* Add New Routes Above */
 	otherwise({redirectTo:'/home'});

@@ -1,0 +1,26 @@
+<form>
+
+	<div class="modal-header">
+		<h3>Product</h3>
+	</div>
+	<div class="modal-body customer-item">
+
+		<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+
+		<table>
+			<tr>
+				<th>Description:</th>
+				<td><input type="text" class="form-control" ng-model="product.description" /></td>
+				</tr>
+			<tr>
+				<th>Price:</th>
+				<td><input type="text" class="form-control" ng-model="product.price" /></td>
+			</tr>
+		</table>
+	</div>
+	<div class="modal-footer">
+		<button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+		<button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+	</div>
+
+</form>
