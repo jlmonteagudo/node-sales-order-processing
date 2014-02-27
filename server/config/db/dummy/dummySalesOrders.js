@@ -245,17 +245,14 @@ var createSalesOrders = function(params) {
 
 	SalesOrder.find({}).remove(function() {
 
-		var salesOrder = new SalesOrder( {
-			customer: customer,
-			lines: [
-				{
-					product: product,
-					quantity: 1,
-					price: 13
-				}
-			]
-		} );
+		var salesOrder = getSalesOrderToCreate('received', customer, product, 1, 13);
+		salesOrder.save();
 
+		var salesOrder = getSalesOrderToCreate('preparing', customer, product, 1, 5);
+		salesOrder.save();
+
+
+		var salesOrder = getSalesOrderToCreate('closed', customer, product, 2, 50);
 		salesOrder.save(function(err, createdSalesOrder) {
 			if (err) { deferred.reject(err); }
 			
@@ -263,9 +260,34 @@ var createSalesOrders = function(params) {
 			deferred.resolve(createdSalesOrder);
 		});
 
+
 	});
 
 	return deferred.promise;
+
+};
+
+
+var getSalesOrderToCreate = function(state, customer, product, quantity, price) {
+
+	var salesOrder = new SalesOrder( {
+		state: state,
+		customer: customer,
+		lines: [
+			{
+				product: product,
+				quantity: quantity,
+				price: price
+			},
+			{
+				product: product,
+				quantity: (quantity + 1),
+				price: (price * 2)
+			}			
+		]
+	} );
+
+	return salesOrder;
 
 };
 

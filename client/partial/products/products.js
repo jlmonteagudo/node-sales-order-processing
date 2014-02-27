@@ -38,6 +38,7 @@ angular.module('sop.products', ['sop.products.services'])
 		};
 
 		$scope.$watch('filters.description', function (val) {
+			if (val === undefined) { return };
 			params.filters.description = val;
 			getListProducts();
 		});

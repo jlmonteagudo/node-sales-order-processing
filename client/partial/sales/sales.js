@@ -1,8 +1,15 @@
 
 angular.module('sop.sales', ['ui.select2', 'sop.sales.services'])
 
+	.constant('SalesOrderStates', ['received', 'preparing', 'closed'])
 
-	.controller('SalesListController', ['$scope', 'SalesService', '$modal', '$timeout', function($scope, SalesService, $modal, $timeout) {
+	.constant('SalesOrderStatesColors', {
+		received: 'label-danger', 
+		preparing: 'label-warning', 
+		closed: 'label-success'
+	})
+
+	.controller('SalesListController', ['$scope', 'SalesService', '$modal', '$timeout', 'SalesOrderStatesColors', function($scope, SalesService, $modal, $timeout, SalesOrderStatesColors) {
 
 		$scope.currentPage = 1;
 		$scope.itemsPerPage = 5;
@@ -24,6 +31,10 @@ angular.module('sop.sales', ['ui.select2', 'sop.sales.services'])
 				$scope.sales = sales;
 			});
 		};
+
+		$scope.getStatusClass = function(sale) {
+			return SalesOrderStatesColors[sale.state];
+		}
 
 
 	}]);

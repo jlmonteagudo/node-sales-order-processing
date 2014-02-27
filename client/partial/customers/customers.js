@@ -18,12 +18,14 @@ angular.module('sop.customers', ['sop.customers.services'])
 			}
 		};
 
+
 		var getListCustomers = function() {
 			if (filterTimeout) { $timeout.cancel(filterTimeout); }
 			filterTimeout = $timeout(function() {
 				$scope.customers = CustomersService.getList(params).$object;
 			}, 250);
 		};
+
 
 
 		$scope.customers = CustomersService.getList(params).$object;
@@ -38,24 +40,29 @@ angular.module('sop.customers', ['sop.customers.services'])
 		};
 
 		$scope.$watch('filters.name', function (val) {
+			if (val === undefined) { return };
 			params.filters.name = val;
 			getListCustomers();
 		});
 
 		$scope.$watch('filters.address', function (val) {
+			if (val === undefined) { return };
 			params.filters.address = val;
 			getListCustomers();
 		});
 
 		$scope.$watch('filters.state', function (val) {
+			if (val === undefined) { return };
 			params.filters.state = val;
 			getListCustomers();
 		});
 
 		$scope.$watch('filters.country', function (val) {
+			if (val === undefined) { return };
 			params.filters.country = val;
 			getListCustomers();
 		});
+
 
 		$scope.view = function(customer) {
 

@@ -1,0 +1,4 @@
+show dbs;
+use boot-express-dev
+show collections;
+db.salesorders.find({});
