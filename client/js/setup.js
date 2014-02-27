@@ -5,7 +5,8 @@ angular.module('sop',
 	'ngAnimate', 
 	'restangular',
 	'sop.customers',
-	'sop.products'
+	'sop.products',
+	'sop.sales'
 	]);
 
 angular.module('sop').config(function($routeProvider) {
@@ -19,6 +20,9 @@ angular.module('sop').config(function($routeProvider) {
 	}).
 	when('/products', {
 		templateUrl: 'partial/products/products.html'
+	}).
+	when('/sales', {
+		templateUrl: 'partial/sales/sales.html'
 	}).
 	/* Add New Routes Above */
 	otherwise({redirectTo:'/home'});
@@ -42,7 +46,7 @@ angular.module('sop').config(function(RestangularProvider) {
 			newResponse = response.results;
 			newResponse.count = response.count;
 		} else {
-			newResponse = response.data;
+			newResponse = response;
 		}
 		
 		return newResponse;

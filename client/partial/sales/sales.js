@@ -1,7 +1,53 @@
 
-angular.module('sop.products', ['sop.products.services'])
+angular.module('sop.sales', ['ui.select2', 'sop.sales.services'])
 
-	.controller('ProductsListController', ['$scope', 'ProductsService', '$modal', '$timeout', function($scope, ProductsService, $modal, $timeout) {
+
+	.controller('SalesListController', ['$scope', 'SalesService', '$modal', '$timeout', function($scope, SalesService, $modal, $timeout) {
+
+		$scope.currentPage = 1;
+		$scope.itemsPerPage = 5;
+
+		var params = {
+			options: {
+				skip: (($scope.currentPage - 1) * $scope.itemsPerPage),
+				limit: $scope.itemsPerPage
+			}
+		};
+
+
+		$scope.sales = SalesService.getList(params).$object;
+
+		$scope.selectPage = function (pageNumber) {
+			$scope.currentPage = pageNumber;
+			params.options.skip = (($scope.currentPage - 1) * $scope.itemsPerPage);
+			SalesService.getList(params).then(function(sales) {
+				$scope.sales = sales;
+			});
+		};
+
+
+	}]);
+
+
+	/*
+	.controller('SalesNewController', ['$scope', '$http', 'Restangular', 'SalesService', 'CustomersService', '$modal', '$timeout', function($scope, $http, Restangular, SalesService, CustomersService, $modal, $timeout) {
+
+		$scope.customersSelectOptions = CustomersService.getOptionsForSelectWidget();
+
+		$scope.$watch('customer', function(newValue, oldValue) {
+			$scope.espia = newValue;
+		});
+
+	}]);
+	*/
+
+
+
+
+
+
+/*
+	.controller('ProductsListController', ['$scope', '$http', 'ProductsService', '$modal', '$timeout', function($scope, $http, ProductsService, $modal, $timeout) {
 
 		$scope.currentPage = 1;
 		$scope.itemsPerPage = 5;
@@ -23,7 +69,7 @@ angular.module('sop.products', ['sop.products.services'])
 			filterTimeout = $timeout(function() {
 				$scope.products = ProductsService.getList(params).$object;
 			}, 250);
-		};
+		}
 
 
 		$scope.products = ProductsService.getList(params).$object;
@@ -223,3 +269,4 @@ angular.module('sop.products', ['sop.products.services'])
 		};
 
 	}]);
+*/

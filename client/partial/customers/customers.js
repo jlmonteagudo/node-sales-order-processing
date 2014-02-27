@@ -1,12 +1,7 @@
 
-angular.module('sop.customers', [])
+angular.module('sop.customers', ['sop.customers.services'])
 
-	.factory('CustomersService', ['Restangular', function(Restangular) {
-		return Restangular.all('customers');
-	}])
-
-
-	.controller('CustomersListController', ['$scope', '$http', 'CustomersService', '$modal', '$timeout', function($scope, $http, CustomersService, $modal, $timeout) {
+	.controller('CustomersListController', ['$scope', 'CustomersService', '$modal', '$timeout', function($scope, CustomersService, $modal, $timeout) {
 
 		$scope.currentPage = 1;
 		$scope.itemsPerPage = 5;
@@ -28,7 +23,7 @@ angular.module('sop.customers', [])
 			filterTimeout = $timeout(function() {
 				$scope.customers = CustomersService.getList(params).$object;
 			}, 250);
-		}
+		};
 
 
 		$scope.customers = CustomersService.getList(params).$object;

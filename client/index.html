@@ -7,6 +7,7 @@
 
   <!-- App LESS -->
   <link href="css/app.less" type="text/css" rel="stylesheet/less">
+  <link rel="stylesheet" href="bower_components/select2/select2.css">
 
 </head>
 <body>
@@ -17,6 +18,7 @@
   <!-- JS from Bower components -->
   <script src="bower_components/less.js/dist/less-1.5.0.js" data-build="exclude"></script>
   <script src="bower_components/jquery/jquery.js"></script>
+  <script src="bower_components/select2/select2.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>
   <script src="bower_components/moment/moment.js"></script>
@@ -26,6 +28,7 @@
   <script src="bower_components/restangular/dist/restangular.min.js"></script>
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
+  <script src="bower_components/angular-ui-select2/src/select2.js"></script>
 
 
   <!-- Main App JS -->
@@ -43,7 +46,11 @@
   <!-- Partial JS -->
   <script src="partial/home/home.js"></script>
   <script src="partial/customers/customers.js"></script>
+  <script src="partial/customers/services/customers-service.js"></script>
   <script src="partial/products/products.js"></script>
+  <script src="partial/products/services/products-service.js"></script>
+  <script src="partial/sales/sales.js"></script>
+  <script src="partial/sales/services/sales-service.js"></script>
   <!-- Add New Partial JS Above -->
 
   <div>
@@ -66,7 +73,7 @@
           <ul class="nav navbar-nav">
             <li><a href="/#/customers">Customers</a></li>
             <li><a href="/#/products">Products</a></li>
-            <li><a href="#">Sales</a></li>
+            <li><a href="/#/sales">Sales</a></li>
             <li><a href="#">Dashboard</a></li>
           </ul>
         </div>

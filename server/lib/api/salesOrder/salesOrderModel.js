@@ -5,11 +5,11 @@ var mongoose = require('mongoose'),
 
 var SalesOrderSchema = new Schema({
 	created: { type: Date, default: Date.now },
-	customer: { type: Schema.Types.ObjectId, ref: 'Customer'},
+	customer: { type: Schema.Types.ObjectId, ref: 'Customer', required: true},
 	lines: [{
-		product: { type: Schema.Types.ObjectId, ref: 'Product'},
-		quantity: { type: Number, min: 1, max: 9999 },
-		price: { type: Number, min: 1, max: 9999 }
+		product: { type: Schema.Types.ObjectId, ref: 'Product', required: true},
+		quantity: { type: Number, min: 1, max: 9999, required: true },
+		price: { type: Number, min: 1, max: 9999, required: true }
 	}]
 });
 
