@@ -34,7 +34,7 @@ angular.module('sop.sales', ['ui.select2', 'sop.sales.services'])
 
 		$scope.getStatusClass = function(sale) {
 			return SalesOrderStatesColors[sale.state];
-		}
+		};
 
 
 	}]);

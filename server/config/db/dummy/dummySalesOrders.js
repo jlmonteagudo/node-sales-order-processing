@@ -237,37 +237,6 @@ var createProducts = function() {
 };
 
 
-var createSalesOrders = function(params) {
-
-	var customer = params[0],
-		product = params[1],
-		deferred = Q.defer();
-
-	SalesOrder.find({}).remove(function() {
-
-		var salesOrder = getSalesOrderToCreate('received', customer, product, 1, 13);
-		salesOrder.save();
-
-		var salesOrder = getSalesOrderToCreate('preparing', customer, product, 1, 5);
-		salesOrder.save();
-
-
-		var salesOrder = getSalesOrderToCreate('closed', customer, product, 2, 50);
-		salesOrder.save(function(err, createdSalesOrder) {
-			if (err) { deferred.reject(err); }
-			
-			log.info('Finished populating dummy sales orders');
-			deferred.resolve(createdSalesOrder);
-		});
-
-
-	});
-
-	return deferred.promise;
-
-};
-
-
 var getSalesOrderToCreate = function(state, customer, product, quantity, price) {
 
 	var salesOrder = new SalesOrder( {
@@ -283,11 +252,42 @@ var getSalesOrderToCreate = function(state, customer, product, quantity, price) 
 				product: product,
 				quantity: (quantity + 1),
 				price: (price * 2)
-			}			
+			}
 		]
 	} );
 
 	return salesOrder;
+
+};
+
+
+var createSalesOrders = function(params) {
+
+	var customer = params[0],
+		product = params[1],
+		deferred = Q.defer();
+
+	SalesOrder.find({}).remove(function() {
+
+		var salesOrder = getSalesOrderToCreate('received', customer, product, 1, 13);
+		salesOrder.save();
+
+		salesOrder = getSalesOrderToCreate('preparing', customer, product, 1, 5);
+		salesOrder.save();
+
+
+		salesOrder = getSalesOrderToCreate('closed', customer, product, 2, 50);
+		salesOrder.save(function(err, createdSalesOrder) {
+			if (err) { deferred.reject(err); }
+			
+			log.info('Finished populating dummy sales orders');
+			deferred.resolve(createdSalesOrder);
+		});
+
+
+	});
+
+	return deferred.promise;
 
 };
 

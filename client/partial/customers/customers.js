@@ -40,25 +40,25 @@ angular.module('sop.customers', ['sop.customers.services'])
 		};
 
 		$scope.$watch('filters.name', function (val) {
-			if (val === undefined) { return };
+			if (val === undefined) { return; }
 			params.filters.name = val;
 			getListCustomers();
 		});
 
 		$scope.$watch('filters.address', function (val) {
-			if (val === undefined) { return };
+			if (val === undefined) { return; }
 			params.filters.address = val;
 			getListCustomers();
 		});
 
 		$scope.$watch('filters.state', function (val) {
-			if (val === undefined) { return };
+			if (val === undefined) { return; }
 			params.filters.state = val;
 			getListCustomers();
 		});
 
 		$scope.$watch('filters.country', function (val) {
-			if (val === undefined) { return };
+			if (val === undefined) { return; }
 			params.filters.country = val;
 			getListCustomers();
 		});
