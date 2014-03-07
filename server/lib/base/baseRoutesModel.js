@@ -1,8 +1,7 @@
 var baseRoutesModel = {
 	'messages': 'Message',
 	'products': 'Product',
-	'customers': 'Customer',
-	'sales-orders': 'SalesOrder'
+	'customers': 'Customer'
 };
 
 module.exports = baseRoutesModel;

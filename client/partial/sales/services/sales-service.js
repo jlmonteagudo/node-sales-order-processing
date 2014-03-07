@@ -1,8 +1,22 @@
 
 angular.module('sop.sales.services', [])
 
+	.constant('SalesOrderStates', [
+		{ 
+			id: 'received', 
+			text: 'Received'
+		},
+		{
+			id: 'preparing', 
+			text: 'Preparing'
+		}, 
+		{
+			id: 'closed', 
+			text: 'Closed'			
+		}
+	])
 
-	.factory('SalesService', ['Restangular', function(Restangular) {
+	.factory('SalesService', ['Restangular', 'SalesOrderStates', function(Restangular, SalesOrderStates) {
 
 		return {
 			
@@ -12,6 +26,10 @@ angular.module('sop.sales.services', [])
 
 			get: function(id) {
 				return Restangular.one('sales-orders', id).get();
+			},
+
+			getSalesOrderStates: function() {
+				return SalesOrderStates;
 			}
 
 		};

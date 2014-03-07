@@ -13,13 +13,24 @@ exports.load = function(req, res, next, id) {
 
 	try {
 
-		if (!SalesOrder.isObjectId(id)) { throw new Error(); }
+		//if (!SalesOrder.isObjectId(id)) { throw new Error(); }
 
+		/*
 		SalesOrder.findById(id, function (err, salesOrder) {
 			if (err) { throw new Error(); }
 			req.salesOrderModel = salesOrder;
 			next();
 		});
+		*/
+
+		SalesOrder.findById(id)
+			.populate('customer lines.product')
+			.exec(function(err, salesOrder) {
+				if (err) { throw err; }
+				req.salesOrderModel = salesOrder;
+				next();
+			});
+
 	}
 	catch (err) {
 		res.json(404, {'code': 'not-found', 'message' : 'Not Found'});
@@ -86,7 +97,6 @@ exports.list = function(req, res) {
 exports.update = function(req, res) {
 
 	var salesOrder = req.salesOrderModel;
-
 	salesOrder = _.extend(salesOrder, req.body);
 	salesOrder.save(function (err, salesOrder) {
 		if (err) { res.json(400, {'code': 'update-error', 'message' : err.message}); }
@@ -102,7 +112,6 @@ exports.update = function(req, res) {
 exports.create = function(req, res) {
 
 	var salesOrder = new SalesOrder(req.body);
-
 	salesOrder.save(function (err, salesOrder) {
 		if (err) { res.json(400, {'code': 'create-error', 'message' : err.message}); }
 		else {

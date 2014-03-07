@@ -1,18 +1,50 @@
 <div class="modal-header">
-	<h3>Product</h3>
+	<h3>Sales</h3>
 </div>
 <div class="modal-body customer-item">
+
 	<table>
 		<tr>
-			<th>Description:</th>
-			<td>{{product.description}}</td>
-			</tr>
+			<th>#:</th>
+			<td>{{sale._id}}</td>
+		</tr>
 		<tr>
-			<th>Price:</th>
-			<td>{{product.price}}</td>
+			<th>Date:</th>
+			<td>{{sale.created | date: 'dd/MM/yyyy'}}</td>
+		</tr>
+		<tr>
+			<th>Customer:</th>
+			<td>{{sale.customer.name}}</td>
+		</tr>		
+		<tr>
+			<th>State:</th>
+			<td><span class="label" ng-class="getStatusClass(sale)">{{sale.state}}<span></td>
 		</tr>
 	</table>
+
+	<hr class="sales-separator" />
+
+	<table class="wider">
+		<thead>
+			<tr>
+				<th>Product</th>
+				<th class="cell-center">Quantity</th>
+				<th class="cell-center">Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="line in sale.lines">
+				<td>{{line.product.description}}</td>
+				<td class="cell-center">{{line.quantity}}</td>
+				<td class="cell-center">{{line.price | number:2}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<p class="amount-label">Total Amount: <span>{{sale.amount | number:2}}</span></p>
+
 </div>
+
 <div class="modal-footer">
 	<button class="btn btn-primary" ng-click="close()">Close</button>
 </div>

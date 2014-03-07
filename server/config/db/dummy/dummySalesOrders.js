@@ -99,7 +99,7 @@ var createCustomers = function() {
 			},
 
 			{
-				name: 'Ada Turan',
+				name: 'Arda Turan',
 				address: 'C/Cabo de Machichaco, 3',
 				state: 'Castellon',
 				country: 'Spain'
@@ -274,7 +274,6 @@ var createSalesOrders = function(params) {
 
 		salesOrder = getSalesOrderToCreate('preparing', customer, product, 1, 5);
 		salesOrder.save();
-
 
 		salesOrder = getSalesOrderToCreate('closed', customer, product, 2, 50);
 		salesOrder.save(function(err, createdSalesOrder) {
