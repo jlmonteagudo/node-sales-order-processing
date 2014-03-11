@@ -1,4 +1,4 @@
-<form>
+<form name="addNewLineForm" ng-submit="save(addNewLineForm.$valid)" novalidate>
 
 	<div class="modal-header">
 		<h3>Add Line</h3>
@@ -10,20 +10,20 @@
 		<table>
 			<tr>
 				<th>Product:</th>
-				<td><input type="text" class="sales-select-products" ui-select2="productsSelectOptions" ng-model="line.product"/></td>
+				<td><input type="text" class="sales-select-products" ui-select2="productsSelectOptions" ng-model="line.product" required/></td>
 			</tr>
 			<tr>
 				<th>Price:</th>
-				<td><input type="text" class="form-control" ng-model="line.price" /></td>
+				<td><input type="number" class="form-control" ng-model="line.price" min="0" required/></td>
 			</tr>
 			<tr>
 				<th>Quantity:</th>
-				<td><input type="text" class="form-control" ng-model="line.quantity" /></td>
+				<td><input type="number" class="form-control" ng-model="line.quantity" min="1" required/></td>
 			</tr>
 		</table>
 	</div>
 	<div class="modal-footer">
-		<button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+		<button type="submit" class="btn btn-primary" ng-disabled="addNewLineForm.$invalid">Save</button>
 		<button class="btn btn-danger" ng-click="cancel()">Cancel</button>
 	</div>
 

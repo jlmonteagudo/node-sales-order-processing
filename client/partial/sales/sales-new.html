@@ -1,4 +1,4 @@
-<form>
+<form name="addNewSaleForm" novalidate>
 
 	<div class="modal-header">
 		<h3>Sales</h3>
@@ -11,10 +11,10 @@
 			<tr>
 				<th>Customer:</th>
 				<td>
-					<input type="text" class="sales-select-customers" ui-select2="customersSelectOptions" ng-model="sale.customer"/>
+					<input type="text" class="sales-select-customers" ui-select2="customersSelectOptions" ng-model="sale.customer" required/>
 				</td>
 				<td>
-					<button type="submit" class="btn btn-success" ng-click="newLine()">Add Line</button>
+					<button class="btn btn-success" ng-click="newLine()">Add Line</button>
 				</td>
 			</tr>
 		</table>
@@ -34,53 +34,20 @@
 					<td>{{line.product.description}}</td>
 					<td class="cell-center">{{line.quantity}}</td>
 					<td class="cell-center">{{line.price | number:2}}</td>
+					<td class="cell-center">
+						<button type="button" class="btn btn-default" title="View" ng-click="removeLine($index)">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>
 
 
-		<!--
-
-		<table>
-			<tr>
-				<th>Name:</th>
-				<td><input type="text" class="form-control" ng-model="customer.name" /></td>
-				</tr>
-			<tr>
-				<th>Address:</th>
-				<td><input type="text" class="form-control" ng-model="customer.address" /></td>
-			</tr>
-			<tr>
-				<th>State:</th>
-				<td><input type="text" class="form-control" ng-model="customer.state" /></td>
-			</tr>
-			<tr>
-				<th>Country:</th>
-				<td><input type="text" class="form-control" ng-model="customer.country" /></td>
-			</tr>
-		</table>
-
-		-->
-
 	</div>
 	<div class="modal-footer">
-		<button type="submit" class="btn btn-primary" ng-click="save()">Save</button>
+		<button type="submit" class="btn btn-primary" ng-click="save()" ng-disabled="addNewSaleForm.$invalid">Save</button>
 		<button class="btn btn-danger" ng-click="cancel()">Cancel</button>
 	</div>
 
 </form>
-
-
-<!--
-<div class="col-md-12" ng-controller="SalesListController">
-
-	<H2>SALES ORDERS</H2>
-	
-  <input type="text" style="width:300px" ui-select2="customersSelectOptions" ng-model="customer"/>
-  <br/>
-  Seleccionado: {{customer}}
-  <br/>
-  Espia: {{espia}}
-
-</div>
--->
