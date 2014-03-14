@@ -30,7 +30,23 @@ angular.module('sop.sales.services', [])
 
 			getSalesOrderStates: function() {
 				return SalesOrderStates;
-			}
+			},
+
+			getCountSales: function(fromDate, toDate) {
+				var params = {};
+
+				params.fromDate = fromDate;
+				params.toDate = toDate;
+				return Restangular.one('sales-orders/count').get(params);
+			},
+
+			getAmountSales: function(fromDate, toDate) {
+				var params = {};
+
+				params.fromDate = fromDate;
+				params.toDate = toDate;
+				return Restangular.one('sales-orders/amount').get(params);
+			}			
 
 		};
 

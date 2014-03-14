@@ -1,0 +1,73 @@
+<div ng-controller="DashboardController">
+
+<!--
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="page-header">
+				<h1 id="container">Sales Order Dashboard</h1>
+			</div>
+		</div>
+	</div>
+-->
+
+
+	<div class="row servive-block margin-bottom-10 margin-top-40">
+
+		<div class="col-md-6">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Sales Order Count</h3>
+				</div>
+				<div class="panel-body">
+
+					<div class="col-md-6">
+						<div class="servive-block-in servive-block-colored servive-block-green">
+							<h4>{{prevMonth}}</h4>
+							<h2>{{prevCount}}</h2>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="servive-block-in servive-block-colored servive-block-green">
+							<h4>{{currentMonth}}</h4>
+							<h2>{{count}}</h2>
+						</div>
+					</div>
+
+					<div ac-chart="chartType" ac-data="chartCountData" ac-config="chartConfig" id='chartCount' class='chart'></div>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Sales Order Amount</h3>
+				</div>
+				<div class="panel-body">
+
+					<div class="col-md-6">
+						<div class="servive-block-in servive-block-colored servive-block-red">
+							<h4>{{prevMonth}}</h4>
+							<h2>{{prevAmount}}</h2>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="servive-block-in servive-block-colored servive-block-red">
+							<h4>{{currentMonth}}</h4>
+							<h2>{{amount}}</h2>
+						</div>
+					</div>
+
+					<div ac-chart="chartType" ac-data="chartAmountData" ac-config="chartConfig" id='chartAmount' class='chart'></div>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+</div>

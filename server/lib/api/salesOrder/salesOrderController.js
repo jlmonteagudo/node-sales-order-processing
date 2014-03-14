@@ -43,6 +43,55 @@ exports.findById = function(req, res) {
 	res.json(req.salesOrderModel);
 };
 
+
+exports.count = function(req, res) {
+	var fromDate = new Date(req.query.fromDate);
+	var toDate = new Date(req.query.toDate);
+
+	SalesOrder.count({ created : { $gte: fromDate, $lte: toDate } }, function(err, count) {
+		res.json({count: count});
+	});
+
+
+};
+
+
+exports.amount = function(req, res) {
+	var fromDate = new Date(req.query.fromDate);
+	var toDate = new Date(req.query.toDate);
+	var amount = 0;
+	var query =
+		[
+			{
+				$match: {
+					created: {
+						$gte: fromDate,
+						$lte: toDate
+					}
+				}
+			},
+
+			{
+				$unwind: '$lines'
+			},
+
+			{
+				$group: {
+					_id: 0,
+					totalAmount: { $sum: { $multiply : ['$lines.quantity', '$lines.price'] } }
+				}
+			}
+		];
+
+	SalesOrder.aggregate( query, function(err, data) {
+		if (err) { throw err; }
+		if (data.length) { amount = data[0].totalAmount; }
+		res.json({amount: amount});
+	});
+
+};
+
+
 exports.list = function(req, res) {
 
 	var conditions, fields, options, filters, responseData;

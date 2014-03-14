@@ -6,7 +6,8 @@ angular.module('sop',
 	'restangular',
 	'sop.customers',
 	'sop.products',
-	'sop.sales'
+	'sop.sales',
+	'sop.dashboard'
 	]);
 
 angular.module('sop').config(function($routeProvider) {
@@ -23,6 +24,9 @@ angular.module('sop').config(function($routeProvider) {
 	}).
 	when('/sales', {
 		templateUrl: 'partial/sales/sales.html'
+	}).
+	when('/dashboard', {
+		templateUrl: 'partial/dashboard/dashboard.html'
 	}).
 	/* Add New Routes Above */
 	otherwise({redirectTo:'/home'});
@@ -69,6 +73,12 @@ angular.module('sop').run(function($rootScope) {
 	};
 
 });
+
+
+
+
+angular.module('sop').constant('DateFormat', 'MM/D/YYYY');
+
 
 
 /*

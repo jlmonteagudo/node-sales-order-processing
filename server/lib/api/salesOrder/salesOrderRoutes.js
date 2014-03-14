@@ -5,6 +5,8 @@ var salesOrderController = require('./salesOrderController');
 
 module.exports = function (app) {
 
+	app.get('/api/sales-orders/count', salesOrderController.count);
+	app.get('/api/sales-orders/amount', salesOrderController.amount);
 	app.get('/api/sales-orders/:salesOrderId', salesOrderController.findById);
 	app.get('/api/sales-orders', salesOrderController.list);
 	app.put('/api/sales-orders/:salesOrderId', salesOrderController.update);

@@ -21,7 +21,6 @@
   <script src="bower_components/select2/select2.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>
-  <script src="bower_components/moment/moment.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -29,12 +28,18 @@
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
   <script src="bower_components/angular-ui-select2/src/select2.js"></script>
-
+  <script src="bower_components/moment/min/moment.min.js"></script>
+  <script src='bower_components/d3/d3.min.js'></script> 
+  <script src='bower_components/angular-charts/dist/angular-charts.min.js'></script>
 
   <!-- Main App JS -->
   <script src="js/setup.js"></script>
 
   <!-- Service JS -->
+  <script src="partial/customers/services/customers-service.js"></script>
+  <script src="partial/products/services/products-service.js"></script>
+  <script src="partial/sales/services/sales-service.js"></script>
+  <script src="partial/dashboard/services/dashboard-service.js"></script>
   <!-- Add New Service JS Above -->
 
   <!-- Directive JS -->
@@ -46,11 +51,9 @@
   <!-- Partial JS -->
   <script src="partial/home/home.js"></script>
   <script src="partial/customers/customers.js"></script>
-  <script src="partial/customers/services/customers-service.js"></script>
   <script src="partial/products/products.js"></script>
-  <script src="partial/products/services/products-service.js"></script>
   <script src="partial/sales/sales.js"></script>
-  <script src="partial/sales/services/sales-service.js"></script>
+  <script src="partial/dashboard/dashboard.js"></script>
   <!-- Add New Partial JS Above -->
 
   <div>
@@ -74,7 +77,7 @@
             <li><a href="/#/customers">Customers</a></li>
             <li><a href="/#/products">Products</a></li>
             <li><a href="/#/sales">Sales</a></li>
-            <li><a href="#">Dashboard</a></li>
+            <li><a href="/#/dashboard">Dashboard</a></li>
           </ul>
         </div>
       </div>

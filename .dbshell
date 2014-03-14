@@ -1,0 +1,5 @@
+show dbs;
+use boot-express-dev
+show collections;
+use boot-express-dev
+db.salesorders.findOne();
