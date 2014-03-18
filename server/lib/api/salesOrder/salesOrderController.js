@@ -13,16 +13,6 @@ exports.load = function(req, res, next, id) {
 
 	try {
 
-		//if (!SalesOrder.isObjectId(id)) { throw new Error(); }
-
-		/*
-		SalesOrder.findById(id, function (err, salesOrder) {
-			if (err) { throw new Error(); }
-			req.salesOrderModel = salesOrder;
-			next();
-		});
-		*/
-
 		SalesOrder.findById(id)
 			.populate('customer lines.product')
 			.exec(function(err, salesOrder) {
@@ -117,14 +107,6 @@ exports.list = function(req, res) {
 
 			responseData.count = count;
 
-			/*
-			SalesOrder.find(conditions, fields, options, function (err, salesOrders) {
-				if (err) { throw err; }
-				responseData.results = salesOrders;
-				res.json(responseData);
-			});
-			*/
-
 			SalesOrder.find(conditions, fields, options)
 				.populate('customer lines.product')
 				.exec(function(err, salesOrders) {
@@ -151,7 +133,7 @@ exports.update = function(req, res) {
 		if (err) { res.json(400, {'code': 'update-error', 'message' : err.message}); }
 		else {
 			res.json(salesOrder);
-			socket.io.sockets.emit(req.params.model + ':update');
+			socket.io.sockets.emit('sales-order:update');
 		}
 	});
 
@@ -165,7 +147,7 @@ exports.create = function(req, res) {
 		if (err) { res.json(400, {'code': 'create-error', 'message' : err.message}); }
 		else {
 			res.json(salesOrder);
-			socket.io.sockets.emit(req.params.model + ':create');
+			socket.io.sockets.emit('sales-order:create');
 		}
 	});
 
@@ -180,7 +162,7 @@ exports.delete = function(req, res) {
 		if (err) { res.json(400, {'code': 'delete-error', 'message' : err.message}); }
 		else {
 			res.json(salesOrder);
-			socket.io.sockets.emit(req.params.model + ':delete');
+			socket.io.sockets.emit('sales-order:delete');
 		}
 	});
 	

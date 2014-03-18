@@ -16,7 +16,7 @@ describe('User API', function () {
 				.expect(200)
 				.end(function(err, res) {
 					if (err) { return done(err); }
-					expect(res.body.length).toEqual(10);
+					expect(res.body.results.length).toEqual(10);
 					done();
 				});
 
@@ -30,7 +30,7 @@ describe('User API', function () {
 				.expect(200)
 				.end(function(err, res) {
 					if (err) { return done(err); }
-					expect(res.body.length).toEqual(2);
+					expect(res.body.results.length).toEqual(2);
 					done();
 				});
 
@@ -63,8 +63,8 @@ describe('User API', function () {
 			request
 				.get('/api/users?conditions={"surname":"Simeone"}')
 				.end(function(err, res) {
-
-					id = res.body[0]._id;
+					console.info(res);
+					id = res.body.results[0]._id;
 
 					request
 						.get('/api/users/' + id)
@@ -128,7 +128,7 @@ describe('User API', function () {
 				.get('/api/users?conditions={"surname":"Simeone"}')
 				.end(function(err, res) {
 
-					simeone = res.body[0];
+					simeone = res.body.results[0];
 					simeone.age = 41;
 
 					request
@@ -153,7 +153,7 @@ describe('User API', function () {
 				.get('/api/users?conditions={"surname":"Simeone"}')
 				.end(function(err, res) {
 
-					simeone = res.body[0];
+					simeone = res.body.results[0];
 					simeone.age = 'abc';
 
 					request
@@ -179,7 +179,7 @@ describe('User API', function () {
 				.get('/api/users?conditions={"surname":"Simeone"}')
 				.end(function(err, res) {
 
-					simeone = res.body[0];
+					simeone = res.body.results[0];
 					simeone.age = 'abc';
 
 					request

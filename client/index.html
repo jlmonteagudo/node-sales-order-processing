@@ -12,6 +12,9 @@
 </head>
 <body>
 
+  <script src="http://localhost:3000/socket.io/socket.io.js"></script>
+
+
   <!-- Livereload script for development only (stripped during dist build) -->
   <script src="http://localhost:35729/livereload.js" data-build="exclude"></script>
 
@@ -31,6 +34,7 @@
   <script src="bower_components/moment/min/moment.min.js"></script>
   <script src='bower_components/d3/d3.min.js'></script> 
   <script src='bower_components/angular-charts/dist/angular-charts.min.js'></script>
+  <script src='bower_components/angular-socket-io/socket.js'></script>
 
   <!-- Main App JS -->
   <script src="js/setup.js"></script>
@@ -40,6 +44,7 @@
   <script src="partial/products/services/products-service.js"></script>
   <script src="partial/sales/services/sales-service.js"></script>
   <script src="partial/dashboard/services/dashboard-service.js"></script>
+  <script src="partial/common/services/socket-io-service.js"></script>
   <!-- Add New Service JS Above -->
 
   <!-- Directive JS -->

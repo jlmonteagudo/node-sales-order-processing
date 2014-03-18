@@ -7,8 +7,19 @@ angular.module('sop',
 	'sop.customers',
 	'sop.products',
 	'sop.sales',
-	'sop.dashboard'
+	'sop.dashboard',
+	'sop.common.services'
 	]);
+
+
+angular.module('sop')
+	.constant('DateFormat',  {
+		standar: 'MM/D/YYYY',
+		monthAndYear: 'MMM, YYYY'
+	})
+	.constant('URLAPIServer', 'http://localhost:3000');
+
+
 
 angular.module('sop').config(function($routeProvider) {
 
@@ -74,10 +85,6 @@ angular.module('sop').run(function($rootScope) {
 
 });
 
-
-
-
-angular.module('sop').constant('DateFormat', 'MM/D/YYYY');
 
 
 
