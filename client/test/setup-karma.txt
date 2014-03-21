@@ -1,0 +1,13 @@
+- Install or update karma: 
+	- npm install -g karma
+	- npm install -g karma-cli
+	- npm install -g karma-jasmine --save-dev
+	- npm install -g karma-chrome-launcher --save-dev
+
+
+UNIT TESTING
+
+- Initialize karma:
+	- karma init test/karma.conf.js
+
+- 

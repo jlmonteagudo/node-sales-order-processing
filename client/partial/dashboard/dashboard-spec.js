@@ -1,4 +1,5 @@
-describe('DashboardCtrl', function() {
+/*
+describe('DashboardController', function() {
 
 	beforeEach(module('sop'));
 
@@ -6,7 +7,7 @@ describe('DashboardCtrl', function() {
 
     beforeEach(inject(function($rootScope, $controller) {
       scope = $rootScope.$new();
-      ctrl = $controller('HomeCtrl', {$scope: scope});
+      ctrl = $controller('DashboardController', {$scope: scope});
     }));	
 
 	it('should ...', inject(function() {
@@ -16,3 +17,4 @@ describe('DashboardCtrl', function() {
 	}));
 
 });
+*/

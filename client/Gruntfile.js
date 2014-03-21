@@ -186,14 +186,24 @@ module.exports = function (grunt) {
           specs: ['js/**/*-spec.js','partial/**/*-spec.js','service/**/*-spec.js','filter/**/*-spec.js','directive/**/*-spec.js']
         }
       }
+    },
+
+    // Test settings
+    karma: {
+      unit: {
+        configFile: 'test/karma.conf.js',
+        singleRun: true
+      }
     }
+
   });
 
   grunt.registerTask('build',['jshint','clean:before','less','dom_munger:readcss','dom_munger:readscripts','ngtemplates','cssmin','concat','ngmin','uglify','copy','dom_munger:removecss','dom_munger:addcss','dom_munger:removescripts','dom_munger:addscript','htmlmin','imagemin','clean:after']);
   grunt.registerTask('server', ['dom_munger:readscripts','jshint','connect', 'watch']);
-  grunt.registerTask('test',['dom_munger:readscripts','jasmine']);
-  grunt.registerTask('default', [ 'jshint' ]);
+  //grunt.registerTask('test',['dom_munger:readscripts','jasmine']);
+  grunt.registerTask('test',['dom_munger:readscripts','karma','watch']);
 
+  grunt.registerTask('default', [ 'jshint' ]);
 
   grunt.event.on('watch', function(action, filepath) {
     //https://github.com/gruntjs/grunt-contrib-watch/issues/156
