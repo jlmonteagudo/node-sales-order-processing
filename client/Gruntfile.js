@@ -201,7 +201,8 @@ module.exports = function (grunt) {
   grunt.registerTask('build',['jshint','clean:before','less','dom_munger:readcss','dom_munger:readscripts','ngtemplates','cssmin','concat','ngmin','uglify','copy','dom_munger:removecss','dom_munger:addcss','dom_munger:removescripts','dom_munger:addscript','htmlmin','imagemin','clean:after']);
   grunt.registerTask('server', ['dom_munger:readscripts','jshint','connect', 'watch']);
   //grunt.registerTask('test',['dom_munger:readscripts','jasmine']);
-  grunt.registerTask('test',['dom_munger:readscripts','karma','watch']);
+  //grunt.registerTask('test',['dom_munger:readscripts','karma','watch']);
+  grunt.registerTask('test',['dom_munger:readscripts','karma']);
 
   grunt.registerTask('default', [ 'jshint' ]);
 

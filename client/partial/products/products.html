@@ -17,7 +17,7 @@
 			<thead>
 				<tr>
 					<th>
-						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By Description" ng-model="filters.description">
+						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By Description" ng-model="filters.description" ng-change="getListProducts()">
 						<br/>
 						Description
 					</th>
@@ -35,16 +35,16 @@
 					<td>{{product.description}}</td>
 					<td>{{product.price}}</td>
 					<td>
-						<div style="width: 150px">
-						<button type="button" class="btn btn-default" title="View" ng-click="view(product)">
-							<span class="glyphicon glyphicon-eye-open"></span>
-						</button>
-						<button type="button" class="btn btn-default" title="Edit" ng-click="edit(product)">
-							<span class="glyphicon glyphicon-edit"></span>
-						</button>
-						<button type="button" class="btn btn-default" title="Remove" ng-click="delete(product)">
-							<span class="glyphicon glyphicon-remove-circle"></span>
-						</button>
+						<div class="button-actions">
+							<button type="button" class="btn btn-default" title="View" ng-click="view(product)">
+								<span class="glyphicon glyphicon-eye-open"></span>
+							</button>
+							<button type="button" class="btn btn-default" title="Edit" ng-click="edit(product)">
+								<span class="glyphicon glyphicon-edit"></span>
+							</button>
+							<button type="button" class="btn btn-default" title="Remove" ng-click="delete(product)">
+								<span class="glyphicon glyphicon-remove-circle"></span>
+							</button>
 						</div>
 					</td>
 				</tr>

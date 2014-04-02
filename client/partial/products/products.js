@@ -18,9 +18,18 @@ angular.module('sop.products', ['sop.products.services'])
 			}
 		};
 
-		var getListProducts = function() {
+
+		var getParamsFilters = function() {
+			return {
+				description: $scope.filters.description
+			};
+		};
+
+
+		$scope.getListProducts = function() {
 			if (filterTimeout) { $timeout.cancel(filterTimeout); }
 			filterTimeout = $timeout(function() {
+				params.filters = getParamsFilters();
 				$scope.products = ProductsService.getList(params).$object;
 			}, 250);
 		};
@@ -36,12 +45,6 @@ angular.module('sop.products', ['sop.products.services'])
 				$scope.products = products;
 			});
 		};
-
-		$scope.$watch('filters.description', function (val) {
-			if (val === undefined) { return; }
-			params.filters.description = val;
-			getListProducts();
-		});
 
 
 		$scope.view = function(product) {

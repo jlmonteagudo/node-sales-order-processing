@@ -17,22 +17,22 @@
 			<thead>
 				<tr>
 					<th>
-						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By Name" ng-model="filters.name">
+						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By Name" ng-model="filters.name" ng-change="getListCustomers()">
 						<br/>
 						Name
 					</th>
 					<th>
-						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By Address" ng-model="filters.address">
+						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By Address" ng-model="filters.address" ng-change="getListCustomers()">
 						<br/>
 						Address
 					</th>
 					<th>
-						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By State" ng-model="filters.state">
+						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By State" ng-model="filters.state" ng-change="getListCustomers()">
 						<br/>
 						State
 					</th>
 					<th>
-						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By Country" ng-model="filters.country">
+						<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Filter By Country" ng-model="filters.country" ng-change="getListCustomers()">
 						<br/>
 						Country
 					</th>
@@ -49,16 +49,16 @@
 					<td>{{customer.state}}</td>
 					<td>{{customer.country}}</td>
 					<td>
-						<div style="width: 150px">
-						<button type="button" class="btn btn-default" title="View" ng-click="view(customer)">
-							<span class="glyphicon glyphicon-eye-open"></span>
-						</button>
-						<button type="button" class="btn btn-default" title="Edit" ng-click="edit(customer)">
-							<span class="glyphicon glyphicon-edit"></span>
-						</button>
-						<button type="button" class="btn btn-default" title="Remove" ng-click="delete(customer)">
-							<span class="glyphicon glyphicon-remove-circle"></span>
-						</button>
+						<div class="button-actions">
+							<button type="button" class="btn btn-default" title="View" ng-click="view(customer)">
+								<span class="glyphicon glyphicon-eye-open"></span>
+							</button>
+							<button type="button" class="btn btn-default" title="Edit" ng-click="edit(customer)">
+								<span class="glyphicon glyphicon-edit"></span>
+							</button>
+							<button type="button" class="btn btn-default" title="Remove" ng-click="delete(customer)">
+								<span class="glyphicon glyphicon-remove-circle"></span>
+							</button>
 						</div>
 					</td>
 				</tr>
