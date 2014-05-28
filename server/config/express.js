@@ -18,7 +18,7 @@ module.exports = function (app) {
 
 	app.configure(function() {
 
-		app.use(express.static(path.join(__dirname, 'public')));
+		app.use(express.static(path.join(__dirname, '../public')));
 		app.set('views', __dirname + '/views');
 		app.set('view engine', 'html');
 		app.use(express.logger('dev'));

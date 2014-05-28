@@ -17,7 +17,8 @@ angular.module('sop')
 		standar: 'MM/D/YYYY',
 		monthAndYear: 'MMM, YYYY'
 	})
-	.constant('URLAPIServer', 'http://localhost:3000');
+	.constant('URLAPIServerDemo', 'http://localhost:3000')
+	.constant('URLAPIServer', 'http://188.226.179.201:3000');
 
 
 
@@ -47,7 +48,7 @@ angular.module('sop').config(function($routeProvider) {
 
 angular.module('sop').config(function(RestangularProvider) {
 
-	RestangularProvider.setBaseUrl('http://localhost:3000/api');
+	RestangularProvider.setBaseUrl('http://188.226.179.201:3000/api');
 
 	RestangularProvider.setRestangularFields({
 		id: "_id"
